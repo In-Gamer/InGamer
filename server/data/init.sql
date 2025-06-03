@@ -1,0 +1,17 @@
+-- CREATE DATABASE IF NOT EXISTS Ingamer;
+-- USE Ingamer;
+
+-- CREATE TABLE IF NOT EXISTS users (
+--   id INT AUTO_INCREMENT PRIMARY KEY,
+--   login_id VARCHAR(255) NOT NULL,
+--   password VARCHAR(255) NOT NULL,
+--   nickname VARCHAR(255),
+--   profile_image VARCHAR(255),
+--   descriptions TEXT,
+--   myteam VARCHAR(255),
+--   created_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+--   modified_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--   stat BOOLEAN
+-- );
+-- INSERT INTO users (login_id, password, nickname) 
+-- VALUES ('Alice', 'test', 'alice');

@@ -1,0 +1,47 @@
+services:
+  mysql:
+    image: mysql:8.4
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./data:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_USER: gamer
+      MYSQL_PASSWORD: ingamer123!
+      MYSQL_ROOT_PASSWORD: rootingamer123!
+      MYSQL_DATABASE: Ingamer
+    networks:
+      - django-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: ingamer_django
+    ports:
+      - "8080:8080"
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=Ingamer
+      - MYSQL_USER=gamer
+      - MYSQL_PASSWORD=ingamer123!
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - django-network
+    volumes:
+      - .:/app
+
+networks:
+  django-network:
+
+volumes:
+  mysql-data:
