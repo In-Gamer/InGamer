@@ -3,3 +3,5 @@ mysqlclient
 requests
 beautifulsoup4
 selenium>=4.11.2
+djangorestframework==3.16.0
+Pillow
